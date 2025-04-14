@@ -1,5 +1,5 @@
 name: 'statsfm to markdown'
-description: 'Fetches your top albums from stats.fm (formerly Spotistats) for a specified time range and displays them as linked images (with tooltips) in your GitHub profile README.'
+description: 'Displays your stats.fm top albums as linked images with tooltips in your GitHub profile README.'
 author: 'teraha-dev'
 
 inputs:
