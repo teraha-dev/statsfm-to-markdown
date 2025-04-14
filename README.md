@@ -45,6 +45,8 @@ Follow these steps to set up the action:
     jobs:
       update-readme:
         runs-on: ubuntu-latest
+        permissions:
+          contents: write
         steps:
           # Check out the repository code
           - name: Checkout code
