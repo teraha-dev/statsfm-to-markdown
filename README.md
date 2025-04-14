@@ -56,7 +56,7 @@ Follow these steps to set up the action:
 
           # Run the statsfm-to-markdown action
           - name: Update stats.fm top albums
-            uses: teraha-dev/statsfm-to-markdown@v1 # Use the latest release tag (e.g., @v1)
+            uses: teraha-dev/statsfm-to-markdown@v1.0.0 # Use the latest release tag (e.g., @v1.0.0)
             with:
               # REQUIRED: Your stats.fm username
               statsfm_username: 'YOUR_STATSFM_USERNAME' # Replace with your actual username
@@ -114,7 +114,7 @@ Shows the top 10 albums from the last few weeks. Tooltips will include rank and 
 
 ```yaml
 - name: Update stats.fm top albums
-  uses: teraha-dev/statsfm-to-markdown@v1
+  uses: teraha-dev/statsfm-to-markdown@v1.0.0
   with:
     statsfm_username: 'your_username'
 ```
@@ -124,7 +124,7 @@ Shows the top 5 albums from all time, hiding the rank and duration in the toolti
 
 ```yaml
 - name: Update stats.fm top albums
-  uses: teraha-dev/statsfm-to-markdown@v1
+  uses: teraha-dev/statsfm-to-markdown@v1.0.0
   with:
     statsfm_username: 'your_username'
     display_limit: '5'
@@ -138,7 +138,7 @@ Updates a file named `PROFILE.md` instead of the default `README.md`.
 
 ```yaml
 - name: Update stats.fm top albums in PROFILE.md
-  uses: teraha-dev/statsfm-to-markdown@v1
+  uses: teraha-dev/statsfm-to-markdown@v1.0.0
   with:
     statsfm_username: 'your_username'
     readme_path: 'PROFILE.md' # Don't forget to add the markers in PROFILE.md too!
