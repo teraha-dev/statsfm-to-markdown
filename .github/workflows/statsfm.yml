@@ -23,7 +23,6 @@ jobs:
         with:
           statsfm_username: 'arxivtera'
           display_limit: '5'
-          theme: 'light'
           readme_path: 'README.md'
 
       - name: Update README timestamp

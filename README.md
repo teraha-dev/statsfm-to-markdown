@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://github.com/teraha-dev/statsfm-to-markdown/blob/main/LICENSE)
 [![Action Build Status](https://github.com/teraha-dev/statsfm-to-markdown/actions/workflows/statsfm.yml/badge.svg)](https://github.com/teraha-dev/statsfm-to-markdown/actions/workflows/statsfm.yml)
 
-A GitHub Action that fetches your top albums from [stats.fm](https://stats.fm/) (formerly Spotistats) for a specified time range and displays them beautifully on your GitHub profile README. Inspired by the [lastfm-to-markdown](https://github.com/lastfm-to-markdown/lastfm-to-markdown) project.
+A GitHub Action that fetches your top albums from [stats.fm](https://stats.fm/) (formerly Spotistats) for a specified time range and displays them as linked images with tooltips on your GitHub profile README. Inspired by the [lastfm-to-markdown](https://github.com/lastfm-to-markdown/lastfm-to-markdown) project.
 
 ---
 
@@ -13,67 +13,9 @@ A GitHub Action that fetches your top albums from [stats.fm](https://stats.fm/) 
 This action will find the following markers in your README file and automatically insert the generated list of your top albums between them:
 
 <!-- STATSFM START -->
-<div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: flex-start; padding: 10px 0;">
-  <a href="https://open.spotify.com/album/5K4YFkTizFoMOyN5Khfp7G" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
-    <div style="width: 145px; border-radius: 6px; padding: 10px; box-sizing: border-box; text-align: left; display: flex; flex-direction: column; position: relative; background-color: #ffffff; transition: transform 0.2s ease-in-out;" title="Fishmans - 98.12.28 男達の別れ (Live)">
-      <span style="position: absolute; top: 6px; left: 6px; background-color: rgba(0, 0, 0, 0.6); color: white; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 3px; z-index: 1;">1</span>
-      <img src="https://i.scdn.co/image/ab67616d0000b273b8b2f65e2dfa733439974801" alt="Fishmans - 98.12.28 男達の別れ (Live)" style="width: 100%; display: block; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 4px; margin-bottom: 8px;">
-      <div style="height: 75px; display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden;">
-        <div style="font-size: 13px; font-weight: 600; line-height: 1.35; color: #24292e; margin-bottom: 3px; height: calc(1.35em * 2); overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; word-break: break-word;">98.12.28 男達の別れ (Live)</div>
-        <div style="font-size: 11px; color: #586069; line-height: 1.3; margin-bottom: 5px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%;">Fishmans</div>
-        <div style="font-size: 10px; color: #586069; line-height: 1.3; font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace; margin-top: auto;">⏱️ 16h 27m</div>
-      </div>
-    </div>
-  </a>
-  <a href="https://open.spotify.com/album/5ZGzGGNAB6U7QlKpdaMu0d" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
-    <div style="width: 145px; border-radius: 6px; padding: 10px; box-sizing: border-box; text-align: left; display: flex; flex-direction: column; position: relative; background-color: #ffffff; transition: transform 0.2s ease-in-out;" title="結束バンド - 結束バンド">
-      <span style="position: absolute; top: 6px; left: 6px; background-color: rgba(0, 0, 0, 0.6); color: white; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 3px; z-index: 1;">2</span>
-      <img src="https://i.scdn.co/image/ab67616d0000b27309ca036917527fa198ead7b1" alt="結束バンド - 結束バンド" style="width: 100%; display: block; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 4px; margin-bottom: 8px;">
-      <div style="height: 75px; display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden;">
-        <div style="font-size: 13px; font-weight: 600; line-height: 1.35; color: #24292e; margin-bottom: 3px; height: calc(1.35em * 2); overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; word-break: break-word;">結束バンド</div>
-        <div style="font-size: 11px; color: #586069; line-height: 1.3; margin-bottom: 5px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%;">結束バンド</div>
-        <div style="font-size: 10px; color: #586069; line-height: 1.3; font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace; margin-top: auto;">⏱️ 9h 9m</div>
-      </div>
-    </div>
-  </a>
-  <a href="https://open.spotify.com/album/3GH4IiI6jQAIvnHVdb5FB6" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
-    <div style="width: 145px; border-radius: 6px; padding: 10px; box-sizing: border-box; text-align: left; display: flex; flex-direction: column; position: relative; background-color: #ffffff; transition: transform 0.2s ease-in-out;" title="my bloody valentine - Loveless">
-      <span style="position: absolute; top: 6px; left: 6px; background-color: rgba(0, 0, 0, 0.6); color: white; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 3px; z-index: 1;">3</span>
-      <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d8/9c/a2/d89ca2ad-3191-d877-4c2f-13fb3e619a7b/887830015998.png/768x768bb.jpg" alt="my bloody valentine - Loveless" style="width: 100%; display: block; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 4px; margin-bottom: 8px;">
-      <div style="height: 75px; display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden;">
-        <div style="font-size: 13px; font-weight: 600; line-height: 1.35; color: #24292e; margin-bottom: 3px; height: calc(1.35em * 2); overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; word-break: break-word;">Loveless</div>
-        <div style="font-size: 11px; color: #586069; line-height: 1.3; margin-bottom: 5px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%;">my bloody valentine</div>
-        <div style="font-size: 10px; color: #586069; line-height: 1.3; font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace; margin-top: auto;">⏱️ 6h 49m</div>
-      </div>
-    </div>
-  </a>
-  <a href="https://open.spotify.com/album/4i21O3uVh5palcfFhCjlT7" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
-    <div style="width: 145px; border-radius: 6px; padding: 10px; box-sizing: border-box; text-align: left; display: flex; flex-direction: column; position: relative; background-color: #ffffff; transition: transform 0.2s ease-in-out;" title="Slowdive - Souvlaki">
-      <span style="position: absolute; top: 6px; left: 6px; background-color: rgba(0, 0, 0, 0.6); color: white; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 3px; z-index: 1;">4</span>
-      <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c2/a0/a4/c2a0a495-ec33-27f1-c6db-0dff1c3ba15d/dj.pzrqoswp.jpg/768x768bb.jpg" alt="Slowdive - Souvlaki" style="width: 100%; display: block; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 4px; margin-bottom: 8px;">
-      <div style="height: 75px; display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden;">
-        <div style="font-size: 13px; font-weight: 600; line-height: 1.35; color: #24292e; margin-bottom: 3px; height: calc(1.35em * 2); overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; word-break: break-word;">Souvlaki</div>
-        <div style="font-size: 11px; color: #586069; line-height: 1.3; margin-bottom: 5px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%;">Slowdive</div>
-        <div style="font-size: 10px; color: #586069; line-height: 1.3; font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace; margin-top: auto;">⏱️ 3h 17m</div>
-      </div>
-    </div>
-  </a>
-  <a href="#" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
-    <div style="width: 145px; border-radius: 6px; padding: 10px; box-sizing: border-box; text-align: left; display: flex; flex-direction: column; position: relative; background-color: #ffffff; transition: transform 0.2s ease-in-out;" title="Camel - Mirage (Remastered)">
-      <span style="position: absolute; top: 6px; left: 6px; background-color: rgba(0, 0, 0, 0.6); color: white; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 3px; z-index: 1;">5</span>
-      <img src="https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/36/c0/15/36c015db-fa1b-c65c-67dc-302040ee3874/00042288292920.rgb.jpg/768x768bb.jpg" alt="Camel - Mirage (Remastered)" style="width: 100%; display: block; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 4px; margin-bottom: 8px;">
-      <div style="height: 75px; display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden;">
-        <div style="font-size: 13px; font-weight: 600; line-height: 1.35; color: #24292e; margin-bottom: 3px; height: calc(1.35em * 2); overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; word-break: break-word;">Mirage (Remastered)</div>
-        <div style="font-size: 11px; color: #586069; line-height: 1.3; margin-bottom: 5px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%;">Camel</div>
-        <div style="font-size: 10px; color: #586069; line-height: 1.3; font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace; margin-top: auto;">⏱️ 3h 17m</div>
-      </div>
-    </div>
-  </a>
-</div>
-
 <!-- STATSFM END -->
 
-*(The actual content generated by the workflow will appear between these markers, displaying album covers, titles, artists, and optionally rank and playtime.)*
+*(The actual content generated by the workflow will appear between these markers, displaying linked album covers. Hovering over an image will show a tooltip with the artist, album title, and optionally the rank and playtime, if configured.)*
 
 ## 🚀 Usage
 
@@ -104,7 +46,7 @@ Follow these steps to set up the action:
       update-readme:
         runs-on: ubuntu-latest
         permissions:
-          contents: write
+          contents: write # Required to push changes back to the repository
         steps:
           # Check out the repository code
           - name: Checkout code
@@ -112,7 +54,7 @@ Follow these steps to set up the action:
 
           # Run the statsfm-to-markdown action
           - name: Update stats.fm top albums
-            uses: teraha-dev/statsfm-to-markdown@v1 # Use the latest release tag (e.g., @v1, @v1.0.0)
+            uses: teraha-dev/statsfm-to-markdown@v1 # Use the latest release tag (e.g., @v1)
             with:
               # REQUIRED: Your stats.fm username
               statsfm_username: 'YOUR_STATSFM_USERNAME' # Replace with your actual username
@@ -120,9 +62,8 @@ Follow these steps to set up the action:
               # OPTIONAL: Customize the display (see Inputs below)
               display_limit: '10'        # Number of albums to show (max 50)
               time_range: 'weeks'       # Data period: weeks, months, lifetime
-              theme: 'light'            # Appearance: light, dark
-              show_rank: 'true'         # Show rank number: true, false
-              show_duration: 'true'     # Show playtime: true, false
+              show_rank: 'true'         # Include rank number in tooltip: true, false
+              show_duration: 'true'     # Include playtime in tooltip: true, false
               readme_path: 'README.md'  # Path to your README file
 
           # Commit and push the updated README file
@@ -155,20 +96,19 @@ The action will now run according to the schedule you defined (`cron`) or when y
 
 The following inputs can be configured using the `with` keyword in your workflow file:
 
-| Input             | Description                                                      | Required | Default    | Options                     |
-| :---------------- | :--------------------------------------------------------------- | :------- | :--------- | :-------------------------- |
-| `statsfm_username`| Your username on stats.fm.                                       | **`true`** | `N/A`      |                             |
-| `display_limit`   | The maximum number of albums to display.                         | `false`  | `10`       | `1` to `50`                 |
-| `show_duration`   | Whether to show the total playtime for each album.               | `false`  | `true`     | `true`, `false`             |
-| `show_rank`       | Whether to show the ranking number (1, 2, 3...) for each album. | `false`  | `true`     | `true`, `false`             |
-| `theme`           | The visual theme for the displayed albums section.               | `false`  | `light`    | `light`, `dark`             |
-| `time_range`      | The time period for fetching top albums data.                    | `false`  | `weeks`    | `weeks`, `months`, `lifetime` |
-| `readme_path`     | The path to the README file that needs to be updated.            | `false`  | `README.md`|                             |
+| Input             | Description                                                         | Required | Default    | Options                     |
+| :---------------- | :------------------------------------------------------------------ | :------- | :--------- | :-------------------------- |
+| `statsfm_username`| Your username on stats.fm.                                          | **`true`** | `N/A`      |                             |
+| `display_limit`   | The maximum number of albums to display.                            | `false`  | `10`       | `1` to `50`                 |
+| `show_duration`   | Whether to include the total playtime in the image tooltip.           | `false`  | `true`     | `true`, `false`             |
+| `show_rank`       | Whether to include the ranking number (#1, #2...) in the image tooltip. | `false`  | `true`     | `true`, `false`             |
+| `time_range`      | The time period for fetching top albums data.                       | `false`  | `weeks`    | `weeks`, `months`, `lifetime` |
+| `readme_path`     | The path to the README file that needs to be updated.               | `false`  | `README.md`|                             |
 
 ## 🛠️ Configuration Examples
 
 **Basic Setup (Default Settings):**
-Shows the top 10 albums from the last few weeks using the light theme, including rank and duration.
+Shows the top 10 albums from the last few weeks. Tooltips will include rank and duration.
 
 ```yaml
 - name: Update stats.fm top albums
@@ -177,8 +117,8 @@ Shows the top 10 albums from the last few weeks using the light theme, including
     statsfm_username: 'your_username'
 ```
 
-**Customized Setup (Dark Theme, 5 Albums, Lifetime):**
-Shows the top 5 albums from all time using the dark theme, hiding the rank and duration.
+**Customized Setup (Top 5 Albums, Lifetime, No Rank/Duration in Tooltip):**
+Shows the top 5 albums from all time, hiding the rank and duration in the tooltips.
 
 ```yaml
 - name: Update stats.fm top albums
@@ -187,7 +127,6 @@ Shows the top 5 albums from all time using the dark theme, hiding the rank and d
     statsfm_username: 'your_username'
     display_limit: '5'
     time_range: 'lifetime'
-    theme: 'dark'
     show_rank: 'false'
     show_duration: 'false'
 ```
@@ -206,14 +145,18 @@ Updates a file named `PROFILE.md` instead of the default `README.md`.
 ## 🤔 Troubleshooting
 
 *   **Workflow Not Running:** Ensure the workflow file (`.github/workflows/statsfm.yml`) is correctly placed in the `.github/workflows/` directory and has been pushed to your default branch (usually `main` or `master`). Check the Actions tab in your repository for run logs.
-*   **Markers Not Found Error:** Double-check that `<!-- STATSFM START -->` and `<!-- STATSFM END -->` markers exist exactly as shown (case-sensitive) on separate lines within your `README.md` file (or the file specified in `readme_path`). The START marker must appear before the END marker.
+*   **Markers Not Found Error:** Double-check that `<!-- STATSFM START -->` and `<!-- STATSFM END -->` markers exist exactly as shown (case-sensitive) on separate lines within your `README.md` file (or the file specified in `readme_path`). The START marker must appear before the END marker. Ensure there are blank lines before the START marker and after the END marker if they are near other content.
 *   **Invalid Username Error:** Verify that the `statsfm_username` provided in the workflow file is your correct stats.fm username.
 *   **API Errors / No Albums Displayed:**
     *   The stats.fm API might be temporarily unavailable. Check the workflow logs for specific error messages (like HTTP status codes).
     *   Ensure you have listening history on stats.fm for the selected `time_range`. If `time_range` is `weeks` or `months`, you need recent plays.
     *   The action filters out albums if they lack essential data from the API (e.g., image URL). Try increasing the `display_limit` slightly, as the API might return items that cannot be displayed.
     *   **Note:** This action relies on stats.fm's public-facing interfaces which could change without notice, potentially affecting the action's stability or causing errors.
-*   **Changes Not Committed/Pushed:** Ensure the `GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}` line is present in the commit step. This token is automatically provided by GitHub Actions and is necessary for the action to push changes back to your repository. Verify your repository settings allow Actions to create commits/pull requests if you have specific branch protection rules.
+*   **Changes Not Committed/Pushed:**
+    *   Ensure the `permissions: contents: write` line is present in your workflow job configuration, as shown in the usage example.
+    *   Ensure the `GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}` line is present in the commit step's environment variables.
+    *   Verify your repository settings (Settings > Actions > General > Workflow permissions) allow Actions to create commits/pull requests if you have specific branch protection rules that might interfere.
+
 ## 🤝 Contributing
 
 Contributions are welcome! If you have suggestions for improvements or find a bug, please feel free to:
