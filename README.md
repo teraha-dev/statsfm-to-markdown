@@ -13,6 +13,64 @@ A GitHub Action that fetches your top albums from [stats.fm](https://stats.fm/) 
 This action will find the following markers in your README file and automatically insert the generated list of your top albums between them:
 
 <!-- STATSFM START -->
+<div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: flex-start; padding: 10px 0;">
+  <a href="https://open.spotify.com/album/5K4YFkTizFoMOyN5Khfp7G" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+    <div style="width: 145px; border-radius: 6px; padding: 10px; box-sizing: border-box; text-align: left; display: flex; flex-direction: column; position: relative; background-color: #ffffff; transition: transform 0.2s ease-in-out;" title="Fishmans - 98.12.28 男達の別れ (Live)">
+      <span style="position: absolute; top: 6px; left: 6px; background-color: rgba(0, 0, 0, 0.6); color: white; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 3px; z-index: 1;">1</span>
+      <img src="https://i.scdn.co/image/ab67616d0000b273b8b2f65e2dfa733439974801" alt="Fishmans - 98.12.28 男達の別れ (Live)" style="width: 100%; display: block; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 4px; margin-bottom: 8px;">
+      <div style="height: 75px; display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden;">
+        <div style="font-size: 13px; font-weight: 600; line-height: 1.35; color: #24292e; margin-bottom: 3px; height: calc(1.35em * 2); overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; word-break: break-word;">98.12.28 男達の別れ (Live)</div>
+        <div style="font-size: 11px; color: #586069; line-height: 1.3; margin-bottom: 5px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%;">Fishmans</div>
+        <div style="font-size: 10px; color: #586069; line-height: 1.3; font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace; margin-top: auto;">⏱️ 16h 27m</div>
+      </div>
+    </div>
+  </a>
+  <a href="https://open.spotify.com/album/5ZGzGGNAB6U7QlKpdaMu0d" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+    <div style="width: 145px; border-radius: 6px; padding: 10px; box-sizing: border-box; text-align: left; display: flex; flex-direction: column; position: relative; background-color: #ffffff; transition: transform 0.2s ease-in-out;" title="結束バンド - 結束バンド">
+      <span style="position: absolute; top: 6px; left: 6px; background-color: rgba(0, 0, 0, 0.6); color: white; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 3px; z-index: 1;">2</span>
+      <img src="https://i.scdn.co/image/ab67616d0000b27309ca036917527fa198ead7b1" alt="結束バンド - 結束バンド" style="width: 100%; display: block; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 4px; margin-bottom: 8px;">
+      <div style="height: 75px; display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden;">
+        <div style="font-size: 13px; font-weight: 600; line-height: 1.35; color: #24292e; margin-bottom: 3px; height: calc(1.35em * 2); overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; word-break: break-word;">結束バンド</div>
+        <div style="font-size: 11px; color: #586069; line-height: 1.3; margin-bottom: 5px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%;">結束バンド</div>
+        <div style="font-size: 10px; color: #586069; line-height: 1.3; font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace; margin-top: auto;">⏱️ 9h 9m</div>
+      </div>
+    </div>
+  </a>
+  <a href="https://open.spotify.com/album/3GH4IiI6jQAIvnHVdb5FB6" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+    <div style="width: 145px; border-radius: 6px; padding: 10px; box-sizing: border-box; text-align: left; display: flex; flex-direction: column; position: relative; background-color: #ffffff; transition: transform 0.2s ease-in-out;" title="my bloody valentine - Loveless">
+      <span style="position: absolute; top: 6px; left: 6px; background-color: rgba(0, 0, 0, 0.6); color: white; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 3px; z-index: 1;">3</span>
+      <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d8/9c/a2/d89ca2ad-3191-d877-4c2f-13fb3e619a7b/887830015998.png/768x768bb.jpg" alt="my bloody valentine - Loveless" style="width: 100%; display: block; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 4px; margin-bottom: 8px;">
+      <div style="height: 75px; display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden;">
+        <div style="font-size: 13px; font-weight: 600; line-height: 1.35; color: #24292e; margin-bottom: 3px; height: calc(1.35em * 2); overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; word-break: break-word;">Loveless</div>
+        <div style="font-size: 11px; color: #586069; line-height: 1.3; margin-bottom: 5px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%;">my bloody valentine</div>
+        <div style="font-size: 10px; color: #586069; line-height: 1.3; font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace; margin-top: auto;">⏱️ 6h 49m</div>
+      </div>
+    </div>
+  </a>
+  <a href="https://open.spotify.com/album/4i21O3uVh5palcfFhCjlT7" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+    <div style="width: 145px; border-radius: 6px; padding: 10px; box-sizing: border-box; text-align: left; display: flex; flex-direction: column; position: relative; background-color: #ffffff; transition: transform 0.2s ease-in-out;" title="Slowdive - Souvlaki">
+      <span style="position: absolute; top: 6px; left: 6px; background-color: rgba(0, 0, 0, 0.6); color: white; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 3px; z-index: 1;">4</span>
+      <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c2/a0/a4/c2a0a495-ec33-27f1-c6db-0dff1c3ba15d/dj.pzrqoswp.jpg/768x768bb.jpg" alt="Slowdive - Souvlaki" style="width: 100%; display: block; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 4px; margin-bottom: 8px;">
+      <div style="height: 75px; display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden;">
+        <div style="font-size: 13px; font-weight: 600; line-height: 1.35; color: #24292e; margin-bottom: 3px; height: calc(1.35em * 2); overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; word-break: break-word;">Souvlaki</div>
+        <div style="font-size: 11px; color: #586069; line-height: 1.3; margin-bottom: 5px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%;">Slowdive</div>
+        <div style="font-size: 10px; color: #586069; line-height: 1.3; font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace; margin-top: auto;">⏱️ 3h 17m</div>
+      </div>
+    </div>
+  </a>
+  <a href="#" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+    <div style="width: 145px; border-radius: 6px; padding: 10px; box-sizing: border-box; text-align: left; display: flex; flex-direction: column; position: relative; background-color: #ffffff; transition: transform 0.2s ease-in-out;" title="Camel - Mirage (Remastered)">
+      <span style="position: absolute; top: 6px; left: 6px; background-color: rgba(0, 0, 0, 0.6); color: white; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 3px; z-index: 1;">5</span>
+      <img src="https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/36/c0/15/36c015db-fa1b-c65c-67dc-302040ee3874/00042288292920.rgb.jpg/768x768bb.jpg" alt="Camel - Mirage (Remastered)" style="width: 100%; display: block; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 4px; margin-bottom: 8px;">
+      <div style="height: 75px; display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden;">
+        <div style="font-size: 13px; font-weight: 600; line-height: 1.35; color: #24292e; margin-bottom: 3px; height: calc(1.35em * 2); overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; word-break: break-word;">Mirage (Remastered)</div>
+        <div style="font-size: 11px; color: #586069; line-height: 1.3; margin-bottom: 5px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%;">Camel</div>
+        <div style="font-size: 10px; color: #586069; line-height: 1.3; font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace; margin-top: auto;">⏱️ 3h 17m</div>
+      </div>
+    </div>
+  </a>
+</div>
+
 <!-- STATSFM END -->
 
 *(The actual content generated by the workflow will appear between these markers, displaying album covers, titles, artists, and optionally rank and playtime.)*
