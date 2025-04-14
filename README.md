@@ -3,6 +3,7 @@
 [![GitHub Marketplace](https://img.shields.io/badge/Marketplace-statsfm--to--markdown-green?style=flat-square&logo=github)](https://github.com/marketplace/actions/statsfm-to-markdown)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://github.com/teraha-dev/statsfm-to-markdown/blob/main/LICENSE)
 [![Action Build Status](https://github.com/teraha-dev/statsfm-to-markdown/actions/workflows/statsfm.yml/badge.svg)](https://github.com/teraha-dev/statsfm-to-markdown/actions/workflows/statsfm.yml)
+[![Sponsor](https://img.shields.io/github/sponsors/teraha-dev?style=flat-square)](https://github.com/sponsors/teraha-dev)
 
 A GitHub Action that fetches your top albums from [stats.fm](https://stats.fm/) (formerly Spotistats) for a specified time range and displays them as linked images with tooltips on your GitHub profile README. Inspired by the [lastfm-to-markdown](https://github.com/lastfm-to-markdown/lastfm-to-markdown) project.
 
@@ -161,7 +162,9 @@ Updates a file named `PROFILE.md` instead of the default `README.md`.
 
 ## 🤝 Contributing
 
-Contributions are welcome! If you have suggestions for improvements or find a bug, please feel free to:
+Contributions are welcome! If you find this action useful, please consider [sponsoring the developer](https://github.com/sponsors/teraha-dev)!
+
+If you have suggestions for improvements or find a bug, please feel free to:
 
 1.  Open an issue to discuss the change or report the bug.
 2.  Fork the repository (`https://github.com/teraha-dev/statsfm-to-markdown/fork`).
