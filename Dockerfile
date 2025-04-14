@@ -8,4 +8,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY statsfm.py .
 
-ENTRYPOINT ["python", "statsfm.py"]
+ENTRYPOINT ["python", "/app/statsfm.py"]
