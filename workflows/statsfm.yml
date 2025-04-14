@@ -1,0 +1,47 @@
+name: Test and Update README
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run statsfm-to-markdown action (local)
+        uses: ./
+        id: statsfm
+        with:
+          statsfm_username: 'arxivtera'
+          display_limit: '5'
+          theme: 'light'
+          readme_path: 'README.md'
+
+      - name: Update README timestamp
+        run: |
+          # Use GNU sed compatible syntax for macOS and Linux runners
+          sed -i.bak "s/{{ env.TODAY }}/$(date '+%Y-%m-%d %H:%M:%S %Z')/g" README.md && rm README.md.bak
+
+      - name: Commit and Push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          # Add only the README file
+          git add README.md
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit in README."
+            exit 0
+          else
+            git commit -m "docs: Update README example via workflow"
+            git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

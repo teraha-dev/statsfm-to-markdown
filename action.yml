@@ -1,0 +1,49 @@
+name: 'statsfm to Markdown'
+description: 'Fetches your top albums from stats.fm (formerly Spotistats) for a specified time range and displays them as HTML in your GitHub profile README.'
+author: 'teraha-dev'
+
+inputs:
+  statsfm_username:
+    description: 'Your stats.fm username (required)'
+    required: true
+  display_limit:
+    description: 'Maximum number of albums to display (max 50)'
+    required: false
+    default: '10'
+  show_duration:
+    description: 'Show total playtime for each album (true/false)'
+    required: false
+    default: 'true'
+  show_rank:
+    description: 'Show ranking number for each album (true/false)'
+    required: false
+    default: 'true'
+  theme:
+    description: 'Display theme (light/dark)'
+    required: false
+    default: 'light'
+  time_range:
+    description: 'Time range for top albums (weeks/months/lifetime)'
+    required: false
+    default: 'weeks'
+  readme_path:
+    description: 'Path to the README file to update'
+    required: false
+    default: 'README.md'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    # Ensure these match the os.getenv keys in statsfm.py
+    INPUT_STATSFM_USERNAME: ${{ inputs.statsfm_username }}
+    INPUT_DISPLAY_LIMIT: ${{ inputs.display_limit }}
+    INPUT_SHOW_DURATION: ${{ inputs.show_duration }}
+    INPUT_SHOW_RANK: ${{ inputs.show_rank }}
+    INPUT_THEME: ${{ inputs.theme }}
+    INPUT_TIME_RANGE: ${{ inputs.time_range }}
+    INPUT_README_PATH: ${{ inputs.readme_path }}
+
+branding:
+  icon: 'music'
+  color: 'green'
