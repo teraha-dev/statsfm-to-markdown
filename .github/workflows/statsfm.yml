@@ -21,7 +21,7 @@ jobs:
         uses: ./
         id: statsfm
         with:
-          statsfm_username: 'arxivtera'
+          statsfm_username: 'teraha'
           display_limit: '5'
           readme_path: 'README.md'
 
