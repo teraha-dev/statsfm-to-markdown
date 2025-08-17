@@ -22,7 +22,8 @@ jobs:
         id: statsfm
         with:
           statsfm_username: 'teraha'
-          display_limit: '5'
+          display_limit: '12'
+          items_per_row: '6'
           readme_path: 'README.md'
 
       - name: Update README timestamp
