@@ -26,6 +26,7 @@ def get_config() -> dict:
     config = {
         'username': os.getenv('INPUT_STATSFM_USERNAME'),
         'display_limit': min(int(os.getenv('INPUT_DISPLAY_LIMIT', '10')), 50),
+        'items_per_row': int(os.getenv('INPUT_ITEMS_PER_ROW', '5')),
         'show_duration': os.getenv('INPUT_SHOW_DURATION', 'true').lower() == 'true',
         'show_rank': os.getenv('INPUT_SHOW_RANK', 'true').lower() == 'true',
         'time_range': os.getenv('INPUT_TIME_RANGE', 'weeks').lower(),
@@ -94,7 +95,7 @@ def generate_statsfm_content(items: list[dict], config: dict) -> str:
         return "\n\nNo recent albums found or unable to fetch data.\n\n"
 
     content_lines = []
-    items_per_row = 5
+    items_per_row = config['items_per_row']
     image_size = 100
     spacing = '    '
 

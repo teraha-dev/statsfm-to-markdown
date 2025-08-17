@@ -10,6 +10,10 @@ inputs:
     description: 'Maximum number of albums to display (max 50)'
     required: false
     default: '10'
+  items_per_row:
+    description: 'Number of albums to display per row'
+    required: false
+    default: '5'
   show_duration:
     description: 'Include playtime in the image tooltip (true/false)'
     required: false
@@ -33,6 +37,7 @@ runs:
   env:
     INPUT_STATSFM_USERNAME: ${{ inputs.statsfm_username }}
     INPUT_DISPLAY_LIMIT: ${{ inputs.display_limit }}
+    INPUT_ITEMS_PER_ROW: ${{ inputs.items_per_row }}
     INPUT_SHOW_DURATION: ${{ inputs.show_duration }}
     INPUT_SHOW_RANK: ${{ inputs.show_rank }}
     INPUT_TIME_RANGE: ${{ inputs.time_range }}
