@@ -646,11 +646,11 @@ def generate_statsfm_content(items: list[dict], config: dict) -> str:
         
         for filepath, album_url in row_files:
             # Create clickable SVG image
-            img_tag = f'<a href="{album_url}" target="_blank" rel="noopener noreferrer"><img src="{filepath}" alt="Album #{i + len(row_images) + 1}" width="120" height="145" /></a>'
+            img_tag = f'<a href="{album_url}" target="_blank" rel="noopener noreferrer"><img src="{filepath}" alt="Album #{i + len(row_images) + 1}" width="140" height="170" /></a>'
             row_images.append(img_tag)
         
-        # Join images in the row with minimal spacing
-        row_content = " ".join(row_images)
+        # Join images in the row with no spacing
+        row_content = "".join(row_images)
         markdown_lines.append(f'<p align="center">{row_content}</p>')
     
     # Combine all rows
