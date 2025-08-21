@@ -15,28 +15,28 @@
     .artist-text {
         fill: #71717a;
         font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
-        font-size: 10px;
+        font-size: 12px;
         font-weight: 400;
         letter-spacing: 0.025em;
     }
     .album-text {
         fill: #18181b;
         font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
-        font-size: 11px;
+        font-size: 13px;
         font-weight: 500;
         letter-spacing: -0.015em;
     }
     .duration-text {
         fill: #a1a1aa;
         font-family: ui-mono, monospace;
-        font-size: 9px;
+        font-size: 11px;
         font-weight: 400;
         letter-spacing: 0.05em;
     }
     .rank-text {
         fill: white;
         font-family: ui-mono, monospace;
-        font-size: 10px;
+        font-size: 11px;
         font-weight: 600;
         letter-spacing: 0.1em;
     }
