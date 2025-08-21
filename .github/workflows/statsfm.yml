@@ -31,10 +31,10 @@ jobs:
           # Use GNU sed compatible syntax for macOS and Linux runners
           sed -i.bak "s/{{ env.TODAY }}/$(date '+%Y-%m-%d %H:%M:%S %Z')/g" README.md && rm README.md.bak
 
-      - name: Commit and Push changes
+      - name: Commit and push changes
         run: |
           git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.name "statsfm-to-markdown Action"
           # Add README and SVG files
           git add README.md statsfm_svgs/
           # Check if there are changes to commit
@@ -43,6 +43,7 @@ jobs:
             exit 0
           else
             git commit -m "docs: Update stats.fm top albums"
+            echo "Pushing changes..."
             git push
           fi
         env:

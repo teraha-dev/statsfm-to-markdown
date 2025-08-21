@@ -80,10 +80,12 @@ Follow these steps to set up the action:
             run: |
               git config --local user.email "action@github.com"
               git config --local user.name "statsfm-to-markdown Action"
-              git add README.md # Or use the specific path from 'readme_path' if changed
-              # Commit only if README.md has changed
+              # Add README and SVG files
+              git add README.md statsfm_svgs/
+              # Check if there are changes to commit
               if git diff --staged --quiet; then
-                echo "No changes in README.md. Skipping commit."
+                echo "No changes to commit."
+                exit 0
               else
                 git commit -m "docs: Update stats.fm top albums"
                 echo "Pushing changes..."
