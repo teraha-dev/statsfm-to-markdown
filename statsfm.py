@@ -161,28 +161,28 @@ def generate_premium_svg(items: list[dict], config: dict) -> str:
     .artist-text {
         fill: #71717a;
         font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
-        font-size: 10px;
+        font-size: 12px;
         font-weight: 400;
         letter-spacing: 0.025em;
     }
     .album-text {
         fill: #18181b;
         font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
-        font-size: 11px;
+        font-size: 13px;
         font-weight: 500;
         letter-spacing: -0.015em;
     }
     .duration-text {
         fill: #a1a1aa;
         font-family: ui-mono, monospace;
-        font-size: 9px;
+        font-size: 11px;
         font-weight: 400;
         letter-spacing: 0.05em;
     }
     .rank-text {
         fill: white;
         font-family: ui-mono, monospace;
-        font-size: 10px;
+        font-size: 11px;
         font-weight: 600;
         letter-spacing: 0.1em;
     }
@@ -418,28 +418,28 @@ def generate_individual_album_svg(item: dict, rank: int, config: dict) -> tuple[
     .artist-text {
         fill: #71717a;
         font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
-        font-size: 10px;
+        font-size: 12px;
         font-weight: 400;
         letter-spacing: 0.025em;
     }
     .album-text {
         fill: #18181b;
         font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
-        font-size: 11px;
+        font-size: 13px;
         font-weight: 500;
         letter-spacing: -0.015em;
     }
     .duration-text {
         fill: #a1a1aa;
         font-family: ui-mono, monospace;
-        font-size: 9px;
+        font-size: 11px;
         font-weight: 400;
         letter-spacing: 0.05em;
     }
     .rank-text {
         fill: white;
         font-family: ui-mono, monospace;
-        font-size: 10px;
+        font-size: 11px;
         font-weight: 600;
         letter-spacing: 0.1em;
     }
@@ -646,11 +646,11 @@ def generate_statsfm_content(items: list[dict], config: dict) -> str:
         
         for filepath, album_url in row_files:
             # Create clickable SVG image
-            img_tag = f'<a href="{album_url}" target="_blank" rel="noopener noreferrer"><img src="{filepath}" alt="Album #{i + len(row_images) + 1}" width="210" height="250" /></a>'
+            img_tag = f'<a href="{album_url}" target="_blank" rel="noopener noreferrer"><img src="{filepath}" alt="Album #{i + len(row_images) + 1}" width="120" height="145" /></a>'
             row_images.append(img_tag)
         
-        # Join images in the row with some spacing
-        row_content = "    ".join(row_images)
+        # Join images in the row with minimal spacing
+        row_content = " ".join(row_images)
         markdown_lines.append(f'<p align="center">{row_content}</p>')
     
     # Combine all rows
