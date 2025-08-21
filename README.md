@@ -5,21 +5,24 @@
 [![Action Build Status](https://github.com/teraha-dev/statsfm-to-markdown/actions/workflows/statsfm.yml/badge.svg)](https://github.com/teraha-dev/statsfm-to-markdown/actions/workflows/statsfm.yml)
 [![Sponsor](https://img.shields.io/github/sponsors/teraha-dev?style=flat-square)](https://github.com/sponsors/teraha-dev)
 
-A GitHub Action that fetches your top albums from [stats.fm](https://stats.fm/) (formerly Spotistats) for a specified time range and displays them as linked images with tooltips on your GitHub profile README. Inspired by the [lastfm-to-markdown](https://github.com/lastfm-to-markdown/lastfm-to-markdown) project.
+A GitHub Action that fetches your top albums from [stats.fm](https://stats.fm/) (formerly Spotistats) for a specified time range and displays them as beautiful individual SVG cards on your GitHub profile README. Features minimal modern design with clean typography and clickable album cards. Inspired by the [lastfm-to-markdown](https://github.com/lastfm-to-markdown/lastfm-to-markdown) project.
 
 ---
 
 ## ✨ Example Output Section
 
-This action will find the following markers in your README file and automatically insert the generated list of your top albums between them:
+This action will find the following markers in your README file and automatically insert beautiful individual SVG cards for your top albums between them:
 
 <!-- STATSFM START -->
 
-<p align="center"><a href="https://open.spotify.com/album/3GH4IiI6jQAIvnHVdb5FB6" target="_blank" rel="noopener noreferrer" title="#1 my bloody valentine - Loveless (8h 29m)"><img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d8/9c/a2/d89ca2ad-3191-d877-4c2f-13fb3e619a7b/887830015998.png/768x768bb.jpg" alt="my bloody valentine - Loveless" width="100" height="100"></a>    <a href="https://open.spotify.com/album/1NRRN5RWwfuLmQdjshz0L7" target="_blank" rel="noopener noreferrer" title="#2 Kanye West - The College Dropout (Explicit) (3h 31m)"><img src="https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/15/05/09/15050911-a2f1-9ebc-0d16-6e8faad1cf80/00602567924326.rgb.jpg/768x768bb.jpg" alt="Kanye West - The College Dropout (Explicit)" width="100" height="100"></a>    <a href="https://open.spotify.com/album/1p12OAWwudgMqfMzjMvl2a" target="_blank" rel="noopener noreferrer" title="#3 A Tribe Called Quest - The Low End Theory (3h 26m)"><img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e0/14/c8/e014c80a-425b-e01a-1124-cee985bcb5e6/dj.qafpkddz.jpg/768x768bb.jpg" alt="A Tribe Called Quest - The Low End Theory" width="100" height="100"></a>    <a href="https://open.spotify.com/album/6r7LZXAVueS5DqdrvXJJK7" target="_blank" rel="noopener noreferrer" title="#4 Black Sabbath - Paranoid (Remaster) (3h 17m)"><img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/93/74/16/93741672-cedb-1850-dcd9-113a374336d6/4050538642872.jpg/768x768bb.jpg" alt="Black Sabbath - Paranoid (Remaster)" width="100" height="100"></a>    <a href="https://open.spotify.com/album/3539EbNgIdEDGBKkUf4wno" target="_blank" rel="noopener noreferrer" title="#5 Portishead - Dummy (3h 1m)"><img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c1/71/93/c1719342-df7d-e9c5-c87c-53dae5afb289/00042282855329.rgb.jpg/768x768bb.jpg" alt="Portishead - Dummy" width="100" height="100"></a>    <a href="https://open.spotify.com/album/6klUp8sQyRXGuJhqZu4PG3" target="_blank" rel="noopener noreferrer" title="#6 Kanye West - My Beautiful Dark Twisted Fantasy (2h 41m)"><img src="https://i.scdn.co/image/ab67616d0000b273baf2a68126739ff553f2930a" alt="Kanye West - My Beautiful Dark Twisted Fantasy" width="100" height="100"></a></p>
-<p align="center"><a href="https://open.spotify.com/album/67Yc6dfTWwuPceZRK7sluD" target="_blank" rel="noopener noreferrer" title="#7 Madvillain - Madvillainy (2h 31m)"><img src="https://i.scdn.co/image/ab67616d0000b2739c7052b4aa3ccacc215e2584" alt="Madvillain - Madvillainy" width="100" height="100"></a>    <a href="https://open.spotify.com/album/4v5x3Oo3UjQ9YmF3hRAip5" target="_blank" rel="noopener noreferrer" title="#8 A Tribe Called Quest - Midnight Marauders (2h 25m)"><img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/d1/90/11/d1901153-4595-7f2f-12d2-661be9eef883/012414149022.jpg/768x768bb.jpg" alt="A Tribe Called Quest - Midnight Marauders" width="100" height="100"></a>    <a href="https://open.spotify.com/album/6geDeresfKATEklDXuXY93" target="_blank" rel="noopener noreferrer" title="#9 Sweet Trip - Velocity:design:comfort (2h 25m)"><img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c3/e8/4c/c3e84cec-9489-62af-2fad-4c76cc4836e7/mzi.dlnvjlfx.jpg/768x768bb.jpg" alt="Sweet Trip - Velocity:design:comfort" width="100" height="100"></a>    <a href="https://open.spotify.com/album/30zwjSQEodaUXCn11nmiVF" target="_blank" rel="noopener noreferrer" title="#10 Kanye West - VULTURES 1 (2h 18m)"><img src="https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/97/a9/17/97a91772-2c73-ef8c-8936-689daa2ea5ed/cover.jpg/768x768bb.jpg" alt="Kanye West - VULTURES 1" width="100" height="100"></a>    <a href="https://open.spotify.com/album/3WvQpufOsPzkZvcSuynCf3" target="_blank" rel="noopener noreferrer" title="#11 A Tribe Called Quest - We got it from Here... Thank You 4 Your service (2h 17m)"><img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/68/d3/ce/68d3ce5e-9465-4c77-60a6-496417e35308/886446074757.jpg/768x768bb.jpg" alt="A Tribe Called Quest - We got it from Here... Thank You 4 Your service" width="100" height="100"></a>    <a href="https://open.spotify.com/album/2udRJgUgrKM9lC89mSGE71" target="_blank" rel="noopener noreferrer" title="#12 Sheena Ringo - 無罪モラトリアム (2h 16m)"><img src="https://i.scdn.co/image/ab67616d0000b2732eec7a5b51cfdf286683dccb" alt="Sheena Ringo - 無罪モラトリアム" width="100" height="100"></a></p>
+<p align="center"><a href="https://open.spotify.com/album/3GH4IiI6jQAIvnHVdb5FB6" target="_blank" rel="noopener noreferrer"><img src="statsfm_svgs/1.svg" alt="Album #1" width="210" height="250" /></a>    <a href="https://open.spotify.com/album/1p12OAWwudgMqfMzjMvl2a" target="_blank" rel="noopener noreferrer"><img src="statsfm_svgs/2.svg" alt="Album #2" width="210" height="250" /></a>    <a href="https://open.spotify.com/album/1NRRN5RWwfuLmQdjshz0L7" target="_blank" rel="noopener noreferrer"><img src="statsfm_svgs/3.svg" alt="Album #3" width="210" height="250" /></a></p>
 <!-- STATSFM END -->
 
-*(The actual content generated by the workflow will appear between these markers, displaying linked album covers. Hovering over an image will show a tooltip with the artist, album title, and optionally the rank and playtime, if configured.)*
+**Features:**
+- Each album is a separate SVG file (1.svg, 2.svg, etc.) that links directly to Spotify
+- Responsive layout with configurable items per row
+- Automatically truncates long text with ellipsis
+- Clean minimal design with embedded images
 
 ## 🚀 Usage
 
@@ -58,7 +61,7 @@ Follow these steps to set up the action:
 
           # Run the statsfm-to-markdown action
           - name: Update stats.fm top albums
-            uses: teraha-dev/statsfm-to-markdown@v1.0.1 # Use the latest release tag (e.g., @v1.0.1)
+            uses: teraha-dev/statsfm-to-markdown@v1.1.0 # Use the latest release tag (e.g., @v1.1.0)
             with:
               # REQUIRED: Your stats.fm username
               statsfm_username: 'YOUR_STATSFM_USERNAME' # Replace with your actual username
@@ -118,7 +121,7 @@ Shows the top 10 albums from the last few weeks. Tooltips will include rank and 
 
 ```yaml
 - name: Update stats.fm top albums
-  uses: teraha-dev/statsfm-to-markdown@v1.0.1
+  uses: teraha-dev/statsfm-to-markdown@v1.1.0
   with:
     statsfm_username: 'your_username'
 ```
@@ -128,7 +131,7 @@ Shows the top 5 albums from all time, hiding the rank and duration in the toolti
 
 ```yaml
 - name: Update stats.fm top albums
-  uses: teraha-dev/statsfm-to-markdown@v1.0.1
+  uses: teraha-dev/statsfm-to-markdown@v1.1.0
   with:
     statsfm_username: 'your_username'
     display_limit: '5'
@@ -143,7 +146,7 @@ Updates a file named `PROFILE.md` instead of the default `README.md`.
 
 ```yaml
 - name: Update stats.fm top albums in PROFILE.md
-  uses: teraha-dev/statsfm-to-markdown@v1.0.1
+  uses: teraha-dev/statsfm-to-markdown@v1.1.0
   with:
     statsfm_username: 'your_username'
     readme_path: 'PROFILE.md' # Don't forget to add the markers in PROFILE.md too!
