@@ -25,6 +25,7 @@ jobs:
           display_limit: '10'
           items_per_row: '5'
           readme_path: 'README.md'
+          theme: 'light'
 
       - name: Update README timestamp
         run: |

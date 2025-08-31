@@ -35,7 +35,8 @@ def get_config() -> dict:
         'show_duration': os.getenv('INPUT_SHOW_DURATION', 'true').lower() == 'true',
         'show_rank': os.getenv('INPUT_SHOW_RANK', 'true').lower() == 'true',
         'time_range': os.getenv('INPUT_TIME_RANGE', 'weeks').lower(),
-        'readme_path': os.getenv('INPUT_README_PATH', README_PATH)
+        'readme_path': os.getenv('INPUT_README_PATH', README_PATH),
+        'theme': os.getenv('INPUT_THEME', 'light').lower()
     }
 
     if not config['username']:
@@ -50,8 +51,40 @@ def get_config() -> dict:
         logger.warning(f"Unsupported time range '{config['time_range']}'. Using 'weeks'.")
         config['time_range'] = 'weeks'
 
-    logger.info(f"Configuration loaded: User={config['username']}, Limit={config['display_limit']}, Range={config['time_range']}, ShowRank={config['show_rank']}, ShowDuration={config['show_duration']}")
+    if config['theme'] not in ['light', 'dark']:
+        logger.warning(f"Unsupported theme '{config['theme']}'. Using 'light'.")
+        config['theme'] = 'light'
+
+    logger.info(f"Configuration loaded: User={config['username']}, Limit={config['display_limit']}, Range={config['time_range']}, ShowRank={config['show_rank']}, ShowDuration={config['show_duration']}, Theme={config['theme']}")
     return config
+
+# --- Theme Color Functions ---
+def get_theme_colors(theme: str) -> dict:
+    """Returns color scheme based on the selected theme."""
+    if theme == 'dark':
+        return {
+            'card_bg': '#1f2937',
+            'card_border': '#374151',
+            'text_primary': '#f9fafb',
+            'text_secondary': '#d1d5db',
+            'text_tertiary': '#9ca3af',
+            'rank_badge': 'rgba(156, 163, 175, 0.75)',
+            'placeholder_bg': '#374151',
+            'placeholder_border': '#4b5563',
+            'placeholder_icon': '#6b7280'
+        }
+    else:  # light theme
+        return {
+            'card_bg': '#ffffff',
+            'card_border': '#f4f4f5',
+            'text_primary': '#18181b',
+            'text_secondary': '#71717a',
+            'text_tertiary': '#a1a1aa',
+            'rank_badge': 'rgba(107, 114, 128, 0.75)',
+            'placeholder_bg': '#fafafa',
+            'placeholder_border': '#f4f4f5',
+            'placeholder_icon': '#a1a1aa'
+        }
 
 # --- Duration Formatting Function ---
 def format_duration(milliseconds: int | None) -> str | None:
@@ -65,7 +98,7 @@ def format_duration(milliseconds: int | None) -> str | None:
     else: return f"{minutes}m"
 
 # --- Image Download and Processing Function ---
-def download_and_encode_image(image_url: str) -> str | None:
+def download_and_encode_image(image_url: str, theme: str = 'light') -> str | None:
     """Downloads an image and converts it to base64 for SVG embedding."""
     try:
         response = requests.get(image_url, headers=HEADERS, timeout=10)
@@ -75,7 +108,7 @@ def download_and_encode_image(image_url: str) -> str | None:
         content_type = response.headers.get('content-type', '').lower()
         if not content_type.startswith('image/'):
             logger.warning(f"Invalid content type for image: {content_type}")
-            return generate_placeholder_image()
+            return generate_placeholder_image(theme)
             
         # Convert to base64
         image_data = base64.b64encode(response.content).decode('utf-8')
@@ -83,17 +116,19 @@ def download_and_encode_image(image_url: str) -> str | None:
         
     except Exception as e:
         logger.warning(f"Failed to download image {image_url}: {e}")
-        return generate_placeholder_image()
+        return generate_placeholder_image(theme)
 
-def generate_placeholder_image() -> str:
+def generate_placeholder_image(theme: str = 'light') -> str:
     """Generates a minimal placeholder image as base64 data URI."""
+    colors = get_theme_colors(theme)
+    
     # Create a minimal SVG placeholder (140x140)
-    placeholder_svg = """<svg width="140" height="140" xmlns="http://www.w3.org/2000/svg">
-        <rect width="140" height="140" fill="#fafafa" stroke="#f4f4f5" stroke-width="1" rx="6"/>
+    placeholder_svg = f"""<svg width="140" height="140" xmlns="http://www.w3.org/2000/svg">
+        <rect width="140" height="140" fill="{colors['placeholder_bg']}" stroke="{colors['placeholder_border']}" stroke-width="1" rx="6"/>
         <g transform="translate(70,70)">
-            <circle cx="0" cy="0" r="20" fill="#f4f4f5" stroke="#e4e4e7" stroke-width="1"/>
-            <path d="M-6,-10 L6,-10 L6,3 C6,7 3,10 0,10 S-6,7 -6,3 Z" fill="#a1a1aa"/>
-            <circle cx="0" cy="5" r="4" fill="#a1a1aa"/>
+            <circle cx="0" cy="0" r="20" fill="{colors['placeholder_border']}" stroke="{colors['placeholder_icon']}" stroke-width="1"/>
+            <path d="M-6,-10 L6,-10 L6,3 C6,7 3,10 0,10 S-6,7 -6,3 Z" fill="{colors['placeholder_icon']}"/>
+            <circle cx="0" cy="5" r="4" fill="{colors['placeholder_icon']}"/>
         </g>
     </svg>"""
     
@@ -116,6 +151,8 @@ def generate_premium_svg(items: list[dict], config: dict) -> str:
     
     items_per_row = config['items_per_row']
     display_limit = config['display_limit']
+    theme = config['theme']
+    colors = get_theme_colors(theme)
     
     # Design constants
     card_width = 180
@@ -144,48 +181,48 @@ def generate_premium_svg(items: list[dict], config: dict) -> str:
     
     # Add styles - Minimal & Modern Design
     style = SubElement(svg, 'style')
-    style.text = """
-    .card {
+    style.text = f"""
+    .card {{
         transition: all 0.3s ease;
         cursor: pointer;
-    }
-    .card:hover {
+    }}
+    .card:hover {{
         transform: translateY(-1px);
-    }
-    .album-image {
+    }}
+    .album-image {{
         border-radius: 6px;
-    }
-    .rank-badge {
+    }}
+    .rank-badge {{
         filter: drop-shadow(0 1px 3px rgba(0,0,0,0.1));
-    }
-    .artist-text {
-        fill: #71717a;
+    }}
+    .artist-text {{
+        fill: {colors['text_secondary']};
         font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
         font-size: 12px;
         font-weight: 400;
         letter-spacing: 0.025em;
-    }
-    .album-text {
-        fill: #18181b;
+    }}
+    .album-text {{
+        fill: {colors['text_primary']};
         font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
         font-size: 13px;
         font-weight: 500;
         letter-spacing: -0.015em;
-    }
-    .duration-text {
-        fill: #a1a1aa;
+    }}
+    .duration-text {{
+        fill: {colors['text_tertiary']};
         font-family: ui-mono, monospace;
         font-size: 11px;
         font-weight: 400;
         letter-spacing: 0.05em;
-    }
-    .rank-text {
+    }}
+    .rank-text {{
         fill: white;
         font-family: ui-mono, monospace;
         font-size: 11px;
         font-weight: 600;
         letter-spacing: 0.1em;
-    }
+    }}
     """
     
     # Minimal design - no gradients needed
@@ -207,7 +244,7 @@ def generate_premium_svg(items: list[dict], config: dict) -> str:
             continue
             
         # Download and encode image
-        encoded_image = download_and_encode_image(image_url)
+        encoded_image = download_and_encode_image(image_url, theme)
         if not encoded_image:
             continue
             
@@ -256,10 +293,10 @@ def generate_premium_svg(items: list[dict], config: dict) -> str:
             'y': str(y),
             'width': str(card_width),
             'height': str(card_height),
-            'fill': '#ffffff',
+            'fill': colors['card_bg'],
             'rx': '8',
             'ry': '8',
-            'stroke': '#f4f4f5',
+            'stroke': colors['card_border'],
             'stroke-width': '1'
         })
         
@@ -292,7 +329,7 @@ def generate_premium_svg(items: list[dict], config: dict) -> str:
                 'height': str(badge_height),
                 'rx': '6',
                 'ry': '6',
-                'fill': 'rgba(107, 114, 128, 0.75)',
+                'fill': colors['rank_badge'],
                 'class': 'rank-badge'
             })
             
@@ -346,6 +383,8 @@ def generate_individual_album_svg(item: dict, rank: int, config: dict) -> tuple[
     """Generates a single album SVG card and returns (svg_content, album_url)."""
     album_info = item.get("album")
     duration_ms = item.get("playedMs")
+    theme = config['theme']
+    colors = get_theme_colors(theme)
     
     if not album_info:
         return None
@@ -355,7 +394,7 @@ def generate_individual_album_svg(item: dict, rank: int, config: dict) -> tuple[
         return None
         
     # Download and encode image
-    encoded_image = download_and_encode_image(image_url)
+    encoded_image = download_and_encode_image(image_url, theme)
     if not encoded_image:
         return None
     
@@ -401,48 +440,48 @@ def generate_individual_album_svg(item: dict, rank: int, config: dict) -> tuple[
     
     # Add styles - Minimal & Modern Design
     style = SubElement(svg, 'style')
-    style.text = """
-    .card {
+    style.text = f"""
+    .card {{
         transition: all 0.3s ease;
         cursor: pointer;
-    }
-    .card:hover {
+    }}
+    .card:hover {{
         transform: translateY(-1px);
-    }
-    .album-image {
+    }}
+    .album-image {{
         border-radius: 6px;
-    }
-    .rank-badge {
+    }}
+    .rank-badge {{
         filter: drop-shadow(0 1px 3px rgba(0,0,0,0.1));
-    }
-    .artist-text {
-        fill: #71717a;
+    }}
+    .artist-text {{
+        fill: {colors['text_secondary']};
         font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
         font-size: 12px;
         font-weight: 400;
         letter-spacing: 0.025em;
-    }
-    .album-text {
-        fill: #18181b;
+    }}
+    .album-text {{
+        fill: {colors['text_primary']};
         font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
         font-size: 13px;
         font-weight: 500;
         letter-spacing: -0.015em;
-    }
-    .duration-text {
-        fill: #a1a1aa;
+    }}
+    .duration-text {{
+        fill: {colors['text_tertiary']};
         font-family: ui-mono, monospace;
         font-size: 11px;
         font-weight: 400;
         letter-spacing: 0.05em;
-    }
-    .rank-text {
+    }}
+    .rank-text {{
         fill: white;
         font-family: ui-mono, monospace;
         font-size: 11px;
         font-weight: 600;
         letter-spacing: 0.1em;
-    }
+    }}
     """
     
     # Card position (centered)
@@ -458,10 +497,10 @@ def generate_individual_album_svg(item: dict, rank: int, config: dict) -> tuple[
         'y': str(y),
         'width': str(card_width),
         'height': str(card_height),
-        'fill': '#ffffff',
+        'fill': colors['card_bg'],
         'rx': '8',
         'ry': '8',
-        'stroke': '#f4f4f5',
+        'stroke': colors['card_border'],
         'stroke-width': '1'
     })
     
@@ -494,7 +533,7 @@ def generate_individual_album_svg(item: dict, rank: int, config: dict) -> tuple[
             'height': str(badge_height),
             'rx': '6',
             'ry': '6',
-            'fill': 'rgba(107, 114, 128, 0.75)',
+            'fill': colors['rank_badge'],
             'class': 'rank-badge'
         })
         
