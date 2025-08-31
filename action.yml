@@ -30,6 +30,10 @@ inputs:
     description: 'Path to the README file to update'
     required: false
     default: 'README.md'
+  theme:
+    description: 'Theme for the album cards (light/dark)'
+    required: false
+    default: 'light'
 
 runs:
   using: 'docker'
@@ -42,6 +46,7 @@ runs:
     INPUT_SHOW_RANK: ${{ inputs.show_rank }}
     INPUT_TIME_RANGE: ${{ inputs.time_range }}
     INPUT_README_PATH: ${{ inputs.readme_path }}
+    INPUT_THEME: ${{ inputs.theme }}
 
 branding:
   icon: 'music'
