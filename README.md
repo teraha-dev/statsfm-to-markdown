@@ -144,7 +144,7 @@ Shows the top 5 albums from all time, hiding the rank and duration in the SVG im
     time_range: 'lifetime'
     show_rank: 'false'
     show_duration: 'false'
-    items_per_row: '5',
+    items_per_row: '5'
     theme: 'dark'
 ```
 
