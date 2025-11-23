@@ -10,6 +10,7 @@ import io
 from urllib.parse import urlparse
 from xml.etree.ElementTree import Element, SubElement, tostring
 import xml.etree.ElementTree as ET
+from datetime import datetime, timedelta
 
 # --- Basic Setup ---
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -20,7 +21,8 @@ README_PATH = "README.md"
 START_MARKER = "<!-- STATSFM START -->"
 END_MARKER = "<!-- STATSFM END -->"
 
-BASE_API_URL_FORMAT = "https://api.stats.fm/api/v1/users/{username}/top/albums?range={range}&limit={limit}"
+BASE_API_URL_RANGE = "https://api.stats.fm/api/v1/users/{username}/top/albums?range={range}&limit={limit}"
+BASE_API_URL_TIMESTAMP = "https://api.stats.fm/api/v1/users/{username}/top/albums?after={after}&before={before}&limit={limit}"
 HEADERS = {
     'User-Agent': 'statsfm-to-markdown GitHub Action (github.com/teraha-dev/statsfm-to-markdown)'
 }
@@ -36,7 +38,8 @@ def get_config() -> dict:
         'show_rank': os.getenv('INPUT_SHOW_RANK', 'true').lower() == 'true',
         'time_range': os.getenv('INPUT_TIME_RANGE', 'weeks').lower(),
         'readme_path': os.getenv('INPUT_README_PATH', README_PATH),
-        'theme': os.getenv('INPUT_THEME', 'light').lower()
+        'theme': os.getenv('INPUT_THEME', 'light').lower(),
+        'display_mode': os.getenv('INPUT_DISPLAY_MODE', 'svg').lower()
     }
 
     if not config['username']:
@@ -47,7 +50,7 @@ def get_config() -> dict:
         logger.warning(f"'display_limit' must be greater than 0. Using default value 10.")
         config['display_limit'] = 10
 
-    if config['time_range'] not in ['weeks', 'months', 'lifetime']:
+    if config['time_range'] not in ['week', 'weeks', 'months', 'lifetime']:
         logger.warning(f"Unsupported time range '{config['time_range']}'. Using 'weeks'.")
         config['time_range'] = 'weeks'
 
@@ -55,7 +58,11 @@ def get_config() -> dict:
         logger.warning(f"Unsupported theme '{config['theme']}'. Using 'light'.")
         config['theme'] = 'light'
 
-    logger.info(f"Configuration loaded: User={config['username']}, Limit={config['display_limit']}, Range={config['time_range']}, ShowRank={config['show_rank']}, ShowDuration={config['show_duration']}, Theme={config['theme']}")
+    if config['display_mode'] not in ['svg', 'image']:
+        logger.warning(f"Unsupported display mode '{config['display_mode']}'. Using 'svg'.")
+        config['display_mode'] = 'svg'
+
+    logger.info(f"Configuration loaded: User={config['username']}, Limit={config['display_limit']}, Range={config['time_range']}, ShowRank={config['show_rank']}, ShowDuration={config['show_duration']}, Theme={config['theme']}, DisplayMode={config['display_mode']}")
     return config
 
 # --- Theme Color Functions ---
@@ -583,7 +590,23 @@ def generate_individual_album_svg(item: dict, rank: int, config: dict) -> tuple[
 def get_top_albums(username: str, time_range: str, limit: int) -> list[dict] | None:
     """Fetches Top Album data from the stats.fm API."""
     api_limit = min(limit + 5, 50)
-    api_url = BASE_API_URL_FORMAT.format(username=username, range=time_range, limit=api_limit)
+    
+    # For 'week' (1 week), use timestamp-based API
+    if time_range == 'week':
+        now = datetime.now()
+        one_week_ago = now - timedelta(days=7)
+        before_ms = int(now.timestamp() * 1000)
+        after_ms = int(one_week_ago.timestamp() * 1000)
+        api_url = BASE_API_URL_TIMESTAMP.format(
+            username=username,
+            after=after_ms,
+            before=before_ms,
+            limit=api_limit
+        )
+    else:
+        # For 'weeks', 'months', 'lifetime', use range-based API
+        api_url = BASE_API_URL_RANGE.format(username=username, range=time_range, limit=api_limit)
+    
     logger.info(f"Requesting API URL: {api_url}")
     try:
         response = requests.get(api_url, headers=HEADERS, timeout=20)
@@ -659,6 +682,89 @@ def save_individual_svg_files(items: list[dict], config: dict) -> list[tuple[str
             continue
     
     return saved_files
+
+# --- Generate Simple Image Content for README (Image Mode) ---
+def generate_image_content(items: list[dict], config: dict) -> str:
+    """Generates minimal HTML content using album cover images with tooltips."""
+    if not items:
+        logger.warning("No album data available to generate image content.")
+        return "\n\nNo recent albums found or unable to fetch data.\n\n"
+
+    content_lines = []
+    items_per_row = config['items_per_row']
+    image_size = 100
+    spacing = '    '
+
+    valid_items_count = 0
+    current_row_html = []
+
+    for item in items:
+        if valid_items_count >= config['display_limit']:
+            break
+
+        album_info = item.get("album")
+        duration_ms = item.get("playedMs")
+
+        if not album_info:
+            logger.warning("Skipping item due to missing album information.")
+            continue
+        image_url = album_info.get("image")
+        if not image_url:
+            logger.warning(f"Skipping album '{album_info.get('name', 'Unknown')}' due to missing image URL.")
+            continue
+
+        valid_items_count += 1
+        rank = valid_items_count
+
+        album_name = album_info.get("name", "Unknown Album")
+        artists = album_info.get("artists", [])
+        artist_name = artists[0].get("name", "Unknown Artist") if artists else "Unknown Artist"
+        formatted_duration = format_duration(duration_ms)
+
+        album_url = "#"
+        statsfm_url = album_info.get("url")
+        spotify_id = None
+        external_ids = album_info.get("externalIds", {})
+        spotify_ids = external_ids.get("spotify", [])
+        if spotify_ids:
+            spotify_id = spotify_ids[0]
+            spotify_url = f"https://open.spotify.com/album/{spotify_id}"
+
+        if spotify_id:
+            album_url = spotify_url
+        elif statsfm_url:
+            album_url = statsfm_url
+
+        tooltip_parts = []
+        if config['show_rank']:
+            tooltip_parts.append(f"#{rank}")
+        tooltip_parts.append(f"{html.escape(artist_name)} - {html.escape(album_name)}")
+        if config['show_duration'] and formatted_duration:
+            tooltip_parts.append(f"({html.escape(formatted_duration)})")
+        tooltip_text = " ".join(tooltip_parts)
+        safe_alt_text = html.escape(f"{artist_name} - {album_name}", quote=True)
+
+        item_html = f'<a href="{album_url}" target="_blank" rel="noopener noreferrer" title="{tooltip_text}"><img src="{image_url}" alt="{safe_alt_text}" width="{image_size}" height="{image_size}"></a>'
+        current_row_html.append(item_html)
+
+        is_last_item_in_row = (valid_items_count % items_per_row == 0)
+        is_last_item_overall = (valid_items_count == config['display_limit'])
+
+        if is_last_item_in_row or is_last_item_overall:
+            row_content = spacing.join(current_row_html)
+            content_lines.append(f'<p align="center">{row_content}</p>')
+            current_row_html = []
+
+    if current_row_html:
+        row_content = spacing.join(current_row_html)
+        content_lines.append(f'<p align="center">{row_content}</p>')
+
+    if valid_items_count == 0:
+        logger.warning("No valid album data found to display.")
+        return "\n\nNo displayable recent albums found.\n\n"
+
+    logger.info(f"Generated {valid_items_count} album images with tooltips")
+    return "\n" + "\n".join(content_lines) + "\n"
 
 # --- Generate Individual SVG Content for README ---
 def generate_statsfm_content(items: list[dict], config: dict) -> str:
@@ -748,8 +854,13 @@ def main() -> None:
     top_albums_items = get_top_albums(config['username'], config['time_range'], config['display_limit'])
 
     if top_albums_items is not None:
-        svg_content = generate_statsfm_content(top_albums_items, config)
-        update_readme(svg_content, readme_file_path)
+        # Choose content generation method based on display_mode
+        if config['display_mode'] == 'image':
+            content = generate_image_content(top_albums_items, config)
+        else:  # default to 'svg'
+            content = generate_statsfm_content(top_albums_items, config)
+        
+        update_readme(content, readme_file_path)
     else:
         logger.error("Failed to fetch album data from API. README file will not be updated.")
         sys.exit(1)

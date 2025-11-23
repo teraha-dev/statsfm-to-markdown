@@ -23,7 +23,7 @@ inputs:
     required: false
     default: 'true'
   time_range:
-    description: 'Time range for top albums (weeks/months/lifetime)'
+    description: 'Time range for top albums (week: 1 week, weeks: 4 weeks, months: 6 months, lifetime: all time)'
     required: false
     default: 'weeks'
   readme_path:
@@ -34,6 +34,10 @@ inputs:
     description: 'Theme for the album cards (light/dark)'
     required: false
     default: 'light'
+  display_mode:
+    description: 'Display mode (svg: individual SVG cards, image: simple album cover images)'
+    required: false
+    default: 'svg'
 
 runs:
   using: 'docker'
@@ -47,6 +51,7 @@ runs:
     INPUT_TIME_RANGE: ${{ inputs.time_range }}
     INPUT_README_PATH: ${{ inputs.readme_path }}
     INPUT_THEME: ${{ inputs.theme }}
+    INPUT_DISPLAY_MODE: ${{ inputs.display_mode }}
 
 branding:
   icon: 'music'

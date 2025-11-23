@@ -63,27 +63,32 @@ Follow these steps to set up the action:
 
           # Run the statsfm-to-markdown action
           - name: Update stats.fm top albums
-            uses: teraha-dev/statsfm-to-markdown@v1.1.1 # Use the latest release tag (e.g., @v1.1.1)
+            uses: teraha-dev/statsfm-to-markdown@v1.1.2 # Use the latest release tag (e.g., @v1.1.2)
             with:
               # REQUIRED: Your stats.fm username
               statsfm_username: 'YOUR_STATSFM_USERNAME' # Replace with your actual username
 
               # OPTIONAL: Customize the display (see Inputs below)
               display_limit: '10'        # Number of albums to show (max 50)
-              time_range: 'weeks'       # Data period: weeks, months, lifetime
+              time_range: 'weeks'       # Data period: week (1 week), weeks (4 weeks), months (6 months), lifetime (all time)
               show_rank: 'true'         # Include rank number in SVG: true, false
               show_duration: 'true'     # Include playtime in SVG: true, false
               readme_path: 'README.md'  # Path to your README file
               items_per_row: '5'        # Number of albums to display per row
               theme: 'light'            # Theme for album cards: light, dark
+              display_mode: 'svg'       # Display mode: svg (SVG cards), image (simple images)
 
           # Commit and push the updated README file
           - name: Commit and push changes
             run: |
               git config --local user.email "action@github.com"
               git config --local user.name "statsfm-to-markdown Action"
-              # Add README and SVG files
-              git add README.md statsfm_svgs/
+              # Add README (SVG directory is only used in svg display_mode)
+              if [ -d statsfm_svgs ]; then
+                git add README.md statsfm_svgs/
+              else
+                git add README.md
+              fi
               # Check if there are changes to commit
               if git diff --staged --quiet; then
                 echo "No changes to commit."
@@ -115,29 +120,52 @@ The following inputs can be configured using the `with` keyword in your workflow
 | `display_limit`   | The maximum number of albums to display.                            | `false`  | `10`       | `1` to `50`                 |
 | `show_duration`   | Whether to include the total playtime in the SVG image.           | `false`  | `true`     | `true`, `false`             |
 | `show_rank`       | Whether to include the ranking number (#1, #2...) in the SVG image. | `false`  | `true`     | `true`, `false`             |
-| `time_range`      | The time period for fetching top albums data.                       | `false`  | `weeks`    | `weeks`, `months`, `lifetime` |
+| `time_range`      | The time period for fetching top albums data.                       | `false`  | `weeks`    | `week` (1 week), `weeks` (4 weeks), `months` (6 months), `lifetime` (all time) |
 | `readme_path`     | The path to the README file that needs to be updated.               | `false`  | `README.md`|                             |
 | `items_per_row`   | The maximum number of albums to display in a single row.            | `false`  | `5`| `1 to 50` |
 | `theme`           | Theme for the album cards (light/dark)                              | `false`  | `light`    | `light`, `dark`              |
+| `display_mode`    | Display mode for albums                                             | `false`  | `svg`      | `svg` (individual SVG cards), `image` (simple album covers) |
 
 ## 🛠️ Configuration Examples
 
 **Basic Setup (Default Settings):**
-Shows the top 10 albums from the last few weeks. Tooltips will include rank and duration.
+Shows the top 10 albums from the last 4 weeks. Tooltips will include rank and duration.
 
 ```yaml
 - name: Update stats.fm top albums
-  uses: teraha-dev/statsfm-to-markdown@v1.1.1
+  uses: teraha-dev/statsfm-to-markdown@v1.1.2
   with:
     statsfm_username: 'your_username'
 ```
 
-**Customized Setup (Top 5 Albums, Lifetime, No Rank/Duration in SVG, Dark theme):**
-Shows the top 5 albums from all time, hiding the rank and duration in the SVG images.
+**Display Last Week's Data:**
+Shows the top 10 albums from the last 1 week.
 
 ```yaml
 - name: Update stats.fm top albums
-  uses: teraha-dev/statsfm-to-markdown@v1.1.1
+  uses: teraha-dev/statsfm-to-markdown@v1.1.2
+  with:
+    statsfm_username: 'your_username'
+    time_range: 'week'
+```
+
+**Simple Image Mode:**
+Shows albums as simple cover images (no SVG generation, faster, with tooltips on hover).
+
+```yaml
+- name: Update stats.fm top albums
+  uses: teraha-dev/statsfm-to-markdown@v1.1.2
+  with:
+    statsfm_username: 'your_username'
+    display_mode: 'image'
+```
+
+**Customized Setup (Top 5 Albums, Lifetime, No Rank/Duration in SVG, Dark theme):**
+Shows the top 5 albums from all time, hiding the rank and duration in the SVGs.
+
+```yaml
+- name: Update stats.fm top albums
+  uses: teraha-dev/statsfm-to-markdown@v1.1.2
   with:
     statsfm_username: 'your_username'
     display_limit: '5'
@@ -153,7 +181,7 @@ Updates a file named `PROFILE.md` instead of the default `README.md`.
 
 ```yaml
 - name: Update stats.fm top albums in PROFILE.md
-  uses: teraha-dev/statsfm-to-markdown@v1.1.1
+  uses: teraha-dev/statsfm-to-markdown@v1.1.2
   with:
     statsfm_username: 'your_username'
     readme_path: 'PROFILE.md' # Don't forget to add the markers in PROFILE.md too!
