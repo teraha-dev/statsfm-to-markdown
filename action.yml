@@ -23,7 +23,7 @@ inputs:
     required: false
     default: 'true'
   time_range:
-    description: 'Time range for top albums (weeks/months/lifetime)'
+    description: 'Time range for top albums (week: 1 week, weeks: 4 weeks, months: 6 months, lifetime: all time)'
     required: false
     default: 'weeks'
   readme_path:

@@ -70,7 +70,7 @@ Follow these steps to set up the action:
 
               # OPTIONAL: Customize the display (see Inputs below)
               display_limit: '10'        # Number of albums to show (max 50)
-              time_range: 'weeks'       # Data period: weeks, months, lifetime
+              time_range: 'weeks'       # Data period: week (1 week), weeks (4 weeks), months (6 months), lifetime (all time)
               show_rank: 'true'         # Include rank number in SVG: true, false
               show_duration: 'true'     # Include playtime in SVG: true, false
               readme_path: 'README.md'  # Path to your README file
@@ -115,7 +115,7 @@ The following inputs can be configured using the `with` keyword in your workflow
 | `display_limit`   | The maximum number of albums to display.                            | `false`  | `10`       | `1` to `50`                 |
 | `show_duration`   | Whether to include the total playtime in the SVG image.           | `false`  | `true`     | `true`, `false`             |
 | `show_rank`       | Whether to include the ranking number (#1, #2...) in the SVG image. | `false`  | `true`     | `true`, `false`             |
-| `time_range`      | The time period for fetching top albums data.                       | `false`  | `weeks`    | `weeks`, `months`, `lifetime` |
+| `time_range`      | The time period for fetching top albums data.                       | `false`  | `weeks`    | `week` (1 week), `weeks` (4 weeks), `months` (6 months), `lifetime` (all time) |
 | `readme_path`     | The path to the README file that needs to be updated.               | `false`  | `README.md`|                             |
 | `items_per_row`   | The maximum number of albums to display in a single row.            | `false`  | `5`| `1 to 50` |
 | `theme`           | Theme for the album cards (light/dark)                              | `false`  | `light`    | `light`, `dark`              |
@@ -123,13 +123,24 @@ The following inputs can be configured using the `with` keyword in your workflow
 ## 🛠️ Configuration Examples
 
 **Basic Setup (Default Settings):**
-Shows the top 10 albums from the last few weeks. Tooltips will include rank and duration.
+Shows the top 10 albums from the last 4 weeks. Tooltips will include rank and duration.
 
 ```yaml
 - name: Update stats.fm top albums
   uses: teraha-dev/statsfm-to-markdown@v1.1.1
   with:
     statsfm_username: 'your_username'
+```
+
+**Display Last Week's Data:**
+Shows the top 10 albums from the last 1 week.
+
+```yaml
+- name: Update stats.fm top albums
+  uses: teraha-dev/statsfm-to-markdown@v1.1.1
+  with:
+    statsfm_username: 'your_username'
+    time_range: 'week'
 ```
 
 **Customized Setup (Top 5 Albums, Lifetime, No Rank/Duration in SVG, Dark theme):**
