@@ -26,6 +26,8 @@ jobs:
           items_per_row: '5'
           readme_path: 'README.md'
           theme: 'light'
+          display_mode: 'image'
+          time_range: 'week'
 
       - name: Update README timestamp
         run: |

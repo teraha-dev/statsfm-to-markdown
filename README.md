@@ -76,6 +76,7 @@ Follow these steps to set up the action:
               readme_path: 'README.md'  # Path to your README file
               items_per_row: '5'        # Number of albums to display per row
               theme: 'light'            # Theme for album cards: light, dark
+              display_mode: 'svg'       # Display mode: svg (SVG cards), image (simple images)
 
           # Commit and push the updated README file
           - name: Commit and push changes
@@ -119,6 +120,7 @@ The following inputs can be configured using the `with` keyword in your workflow
 | `readme_path`     | The path to the README file that needs to be updated.               | `false`  | `README.md`|                             |
 | `items_per_row`   | The maximum number of albums to display in a single row.            | `false`  | `5`| `1 to 50` |
 | `theme`           | Theme for the album cards (light/dark)                              | `false`  | `light`    | `light`, `dark`              |
+| `display_mode`    | Display mode for albums                                             | `false`  | `svg`      | `svg` (individual SVG cards), `image` (simple album covers) |
 
 ## 🛠️ Configuration Examples
 
@@ -141,6 +143,17 @@ Shows the top 10 albums from the last 1 week.
   with:
     statsfm_username: 'your_username'
     time_range: 'week'
+```
+
+**Simple Image Mode:**
+Shows albums as simple cover images (no SVG generation, faster, with tooltips on hover).
+
+```yaml
+- name: Update stats.fm top albums
+  uses: teraha-dev/statsfm-to-markdown@v1.1.1
+  with:
+    statsfm_username: 'your_username'
+    display_mode: 'image'
 ```
 
 **Customized Setup (Top 5 Albums, Lifetime, No Rank/Duration in SVG, Dark theme):**
