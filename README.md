@@ -83,8 +83,12 @@ Follow these steps to set up the action:
             run: |
               git config --local user.email "action@github.com"
               git config --local user.name "statsfm-to-markdown Action"
-              # Add README and SVG files
-              git add README.md statsfm_svgs/
+              # Add README (SVG directory is only used in svg display_mode)
+              if [ -d statsfm_svgs ]; then
+                git add README.md statsfm_svgs/
+              else
+                git add README.md
+              fi
               # Check if there are changes to commit
               if git diff --staged --quiet; then
                 echo "No changes to commit."
