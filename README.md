@@ -161,7 +161,7 @@ Shows albums as simple cover images (no SVG generation, faster, with tooltips on
 ```
 
 **Customized Setup (Top 5 Albums, Lifetime, No Rank/Duration in SVG, Dark theme):**
-Shows the top 5 albums from all time, hiding the rank and duration in the SVG images.
+Shows the top 5 albums from all time, hiding the rank and duration in the SVGs.
 
 ```yaml
 - name: Update stats.fm top albums
