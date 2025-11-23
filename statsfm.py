@@ -693,7 +693,7 @@ def generate_image_content(items: list[dict], config: dict) -> str:
     content_lines = []
     items_per_row = config['items_per_row']
     image_size = 100
-    spacing = '    '
+    spacing = '&nbsp;&nbsp;&nbsp;&nbsp;'
 
     valid_items_count = 0
     current_row_html = []
