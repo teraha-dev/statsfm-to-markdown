@@ -589,7 +589,7 @@ def generate_individual_album_svg(item: dict, rank: int, config: dict) -> tuple[
 # --- API Call Function ---
 def get_top_albums(username: str, time_range: str, limit: int) -> list[dict] | None:
     """Fetches Top Album data from the stats.fm API."""
-    api_limit = min(limit + 5, 50)
+    api_limit = min(limit * 2, 50)
     
     # For 'week' (1 week), use timestamp-based API
     if time_range == 'week':
