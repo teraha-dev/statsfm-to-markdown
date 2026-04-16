@@ -690,16 +690,13 @@ def generate_image_content(items: list[dict], config: dict) -> str:
         logger.warning("No album data available to generate image content.")
         return "\n\nNo recent albums found or unable to fetch data.\n\n"
 
-    content_lines = []
     items_per_row = config['items_per_row']
     image_size = 100
-    spacing = '&nbsp;&nbsp;&nbsp;&nbsp;'
 
-    valid_items_count = 0
-    current_row_html = []
+    valid_items = []
 
     for item in items:
-        if valid_items_count >= config['display_limit']:
+        if len(valid_items) >= config['display_limit']:
             break
 
         album_info = item.get("album")
@@ -713,8 +710,7 @@ def generate_image_content(items: list[dict], config: dict) -> str:
             logger.warning(f"Skipping album '{album_info.get('name', 'Unknown')}' due to missing image URL.")
             continue
 
-        valid_items_count += 1
-        rank = valid_items_count
+        rank = len(valid_items) + 1
 
         album_name = album_info.get("name", "Unknown Album")
         artists = album_info.get("artists", [])
@@ -745,26 +741,22 @@ def generate_image_content(items: list[dict], config: dict) -> str:
         safe_alt_text = html.escape(f"{artist_name} - {album_name}", quote=True)
 
         item_html = f'<a href="{album_url}" target="_blank" rel="noopener noreferrer" title="{tooltip_text}"><img src="{image_url}" alt="{safe_alt_text}" width="{image_size}" height="{image_size}"></a>'
-        current_row_html.append(item_html)
+        valid_items.append(item_html)
 
-        is_last_item_in_row = (valid_items_count % items_per_row == 0)
-        is_last_item_overall = (valid_items_count == config['display_limit'])
-
-        if is_last_item_in_row or is_last_item_overall:
-            row_content = spacing.join(current_row_html)
-            content_lines.append(f'<p align="center">{row_content}</p>')
-            current_row_html = []
-
-    if current_row_html:
-        row_content = spacing.join(current_row_html)
-        content_lines.append(f'<p align="center">{row_content}</p>')
-
-    if valid_items_count == 0:
+    if not valid_items:
         logger.warning("No valid album data found to display.")
         return "\n\nNo displayable recent albums found.\n\n"
 
-    logger.info(f"Generated {valid_items_count} album images with tooltips")
-    return "\n" + "\n".join(content_lines) + "\n"
+    # Use <table> for reliable grid layout on GitHub (GitHub changed <p> inline image rendering)
+    rows = []
+    for i in range(0, len(valid_items), items_per_row):
+        row_cells = "".join(f"<td>{cell}</td>" for cell in valid_items[i:i + items_per_row])
+        rows.append(f"<tr>{row_cells}</tr>")
+
+    table_html = f'<table align="center">{"".join(rows)}</table>'
+
+    logger.info(f"Generated {len(valid_items)} album images with tooltips")
+    return "\n" + table_html + "\n"
 
 # --- Generate Individual SVG Content for README ---
 def generate_statsfm_content(items: list[dict], config: dict) -> str:
@@ -781,25 +773,19 @@ def generate_statsfm_content(items: list[dict], config: dict) -> str:
         return "\n\nError generating album display.\n\n"
     
     # Create markdown content with clickable individual SVGs
-    markdown_lines = []
     items_per_row = config['items_per_row']
     
-    # Group SVGs by rows
+    # Use <table> for reliable grid layout on GitHub (GitHub changed <p> inline image rendering)
+    rows = []
     for i in range(0, len(saved_files), items_per_row):
         row_files = saved_files[i:i + items_per_row]
-        row_images = []
-        
-        for filepath, album_url in row_files:
-            # Create clickable SVG image
-            img_tag = f'<a href="{album_url}" target="_blank" rel="noopener noreferrer"><img src="{filepath}" alt="Album #{i + len(row_images) + 1}" width="140" height="170" /></a>'
-            row_images.append(img_tag)
-        
-        # Join images in the row with no spacing
-        row_content = "".join(row_images)
-        markdown_lines.append(f'<p align="center">{row_content}</p>')
+        cells = []
+        for j, (filepath, album_url) in enumerate(row_files):
+            img_tag = f'<a href="{album_url}" target="_blank" rel="noopener noreferrer"><img src="{filepath}" alt="Album #{i + j + 1}" width="140" height="170" /></a>'
+            cells.append(f"<td>{img_tag}</td>")
+        rows.append(f"<tr>{''.join(cells)}</tr>")
     
-    # Combine all rows
-    markdown_content = "\n" + "\n".join(markdown_lines) + "\n"
+    markdown_content = "\n" + f'<table align="center">{"".join(rows)}</table>' + "\n"
     
     logger.info(f"Generated {len(saved_files)} individual SVG files with clickable links")
     return markdown_content
